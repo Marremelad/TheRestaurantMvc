@@ -4,18 +4,16 @@ using TheRestaurantMvc.Models;
 
 namespace TheRestaurantMvc.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IHttpClientFactory clientFactory) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly HttpClient _client = clientFactory.CreateClient("TheRestaurantApi");
 
-    public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> Index()
     {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
+        var response = await _client.GetAsync("menu-items");
+        var menuItems =  await response.Content.ReadFromJsonAsync<ApiResponse<List<MenuItem>>>();
+        
+        return View(menuItems?.Value);
     }
 
     public IActionResult Privacy()
