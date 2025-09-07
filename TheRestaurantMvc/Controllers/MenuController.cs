@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TheRestaurantMvc.HttpClients;
+using TheRestaurantMvc.ActionFilters;
 using TheRestaurantMvc.Models;
+using TheRestaurantMvc.Utilities;
 
 namespace TheRestaurantMvc.Controllers;
 
+[ServiceFilter<JwtAuthenticActionFilter>]
 public class MenuController(RegisteredClients clients) : Controller
 {
     public async Task<IActionResult> Index()

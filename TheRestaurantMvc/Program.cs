@@ -1,4 +1,5 @@
-using TheRestaurantMvc.HttpClients;
+using TheRestaurantMvc.ActionFilters;
+using TheRestaurantMvc.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ builder.Services.AddHttpClient("TheRestaurantApi", client =>
 });
 
 builder.Services.AddScoped<RegisteredClients>();
+
+// Action filters
+builder.Services.AddScoped<JwtAuthenticActionFilter>();
 
 var app = builder.Build();
 

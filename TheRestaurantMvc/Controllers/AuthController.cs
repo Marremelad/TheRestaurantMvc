@@ -1,9 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using TheRestaurantMvc.HttpClients;
 using TheRestaurantMvc.Models;
 using TheRestaurantMvc.Models.ViewModels;
+using TheRestaurantMvc.Utilities;
 
 namespace TheRestaurantMvc.Controllers;
 
@@ -37,5 +37,11 @@ public class AuthController(RegisteredClients clients) : Controller
         });
 
         return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult Logout()
+    {
+        HttpContext.Response.Cookies.Delete("jsonWebToken");
+        return RedirectToAction("Login", "Auth");
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TheRestaurantMvc.HttpClients;
+﻿namespace TheRestaurantMvc.Utilities;
 
 public class RegisteredClients(IHttpClientFactory clientFactory)
 {
