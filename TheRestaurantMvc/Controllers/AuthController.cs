@@ -8,14 +8,12 @@ namespace TheRestaurantMvc.Controllers;
 
 public class AuthController(RegisteredClients clients) : Controller
 {
-    public IActionResult Login()
-    {
-        return View();
-    }
+    public IActionResult Login() => View();
     
+    [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
-        var response = await clients.TheRestaurantApiClient().GetAsync("login");
+        var response = await clients.TheRestaurantApiClient().PostAsJsonAsync("auth/login", loginViewModel);
         var authResponse = await response.Content.ReadFromJsonAsync<ApiResponse<AuthResponse>>();
 
         if (!authResponse!.IsSuccess)
