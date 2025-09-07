@@ -20,3 +20,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+body, p {
+  font-family: monospace, sans-serif;
+  line-height: 1.6;
+}
+
+a:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand, .btn {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

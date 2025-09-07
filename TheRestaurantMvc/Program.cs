@@ -1,3 +1,5 @@
+using TheRestaurantMvc.HttpClients;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +9,8 @@ builder.Services.AddHttpClient("TheRestaurantApi", client =>
 {
     client.BaseAddress = new Uri("https://localhost:44304/api/");
 });
+
+builder.Services.AddScoped<RegisteredClients>();
 
 var app = builder.Build();
 

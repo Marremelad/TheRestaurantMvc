@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TheRestaurantMvc.HttpClients;
 using TheRestaurantMvc.Models;
 
 namespace TheRestaurantMvc.Controllers;
 
-public class HomeController(RegisteredClients clients) : Controller
+public class MenuController(RegisteredClients clients) : Controller
 {
     public async Task<IActionResult> Index()
     {
