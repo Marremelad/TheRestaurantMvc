@@ -15,9 +15,15 @@ public class AuthController(RegisteredClients clients) : Controller
     {
         var response = await clients.TheRestaurantApiClient().PostAsJsonAsync("auth/login", loginViewModel);
         var authResponse = await response.Content.ReadFromJsonAsync<ApiResponse<AuthResponse>>();
-
+        
         if (!authResponse!.IsSuccess)
+        {
+            // Learned my lesson here...
+            TempData["ErrorMessage"] = authResponse.Message == "Invalid username or password."
+                ? "Invalid username or password."
+                : null;
             return View(loginViewModel);
+        }
 
         var jwt = authResponse.Value!.AccessToken;
         var jwtObject = new JwtSecurityTokenHandler().ReadJwtToken(jwt);

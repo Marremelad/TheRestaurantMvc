@@ -42,3 +42,8 @@ h1, h2, h3, h4, h5, .navbar-brand, .btn {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+.alert .validation-summary-errors ul {
+  list-style: none;
+  padding-left: 0;
+}
