@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using TheRestaurantMvc.HttpClients;
 using TheRestaurantMvc.Models;
@@ -18,9 +19,8 @@ public class AuthController(RegisteredClients clients) : Controller
         
         if (!authResponse!.IsSuccess)
         {
-            // Learned my lesson here...
-            TempData["ErrorMessage"] = authResponse.Message == "Invalid username or password."
-                ? "Invalid username or password."
+            TempData["ErrorMessage"] = authResponse.StatusCode != HttpStatusCode.UnprocessableEntity
+                ? authResponse.Message
                 : null;
             return View(loginViewModel);
         }
