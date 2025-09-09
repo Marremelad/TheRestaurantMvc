@@ -1,5 +1,7 @@
 using TheRestaurantMvc.ActionFilters;
 using TheRestaurantMvc.Clients;
+using TheRestaurantMvc.Services;
+using TheRestaurantMvc.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddScoped<IRestaurantApiClient, RestaurantApiClient>(provider =
     return new RestaurantApiClient(httpClient);
 });
 
+builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 builder.Services.AddScoped<JwtAuthenticActionFilter>();
 
 var app = builder.Build();

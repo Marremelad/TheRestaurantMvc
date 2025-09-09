@@ -2,21 +2,16 @@
 using TheRestaurantMvc.ActionFilters;
 using TheRestaurantMvc.Clients;
 using TheRestaurantMvc.Models;
+using TheRestaurantMvc.Services;
+using TheRestaurantMvc.Services.IServices;
 
 namespace TheRestaurantMvc.Controllers;
 
 [ServiceFilter<JwtAuthenticActionFilter>]
-public class MenuController(IRestaurantApiClient client) : Controller
+public class MenuController(IMenuItemService service) : Controller
 {
-    public async Task<IActionResult> Index()
-    {
-        var response = await client.TheRestaurantApiClient().GetAsync("menu-items");
-        return View(await response.Content.ReadFromJsonAsync<ApiResponse<List<MenuItem>>>());
-    }
-
-    // public async Task<IActionResult> AdminMenu()
-    // {
-    //     var response = await client.TheRestaurantApiClient().GetAsync("menu-items");
-    //     return View(await response.Content.ReadFromJsonAsync<ApiResponse<List<MenuItem>>>());
-    // }
+    public async Task<IActionResult> Index() => View(await service.GetMenuItemsAsync());
+    
+    public async Task<IActionResult> AdminMenu() => View(await service.GetMenuItemsAsync());
+    
 }
