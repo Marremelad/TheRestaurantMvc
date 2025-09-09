@@ -1,13 +1,6 @@
 ﻿namespace TheRestaurantMvc.Clients;
 
-public class RestaurantApiClient : IRestaurantApiClient
+public class RestaurantApiClient(HttpClient httpClient) : IRestaurantApiClient
 {
-    private readonly HttpClient _httpClient;
-    
-    public RestaurantApiClient(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-    
-    public HttpClient TheRestaurantApiClient() => _httpClient; // Always returns same instance
+    public HttpClient TheRestaurantApiClient() => httpClient; // Always returns same instance
 }
