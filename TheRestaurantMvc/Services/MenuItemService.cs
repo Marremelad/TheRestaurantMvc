@@ -11,4 +11,10 @@ public class MenuItemService(IRestaurantApiClient client) : IMenuItemService
         var response = await client.TheRestaurantApiClient().GetAsync("menu-items");
         return (await response.Content.ReadFromJsonAsync<ApiResponse<List<MenuItem>>>())!;
     }
+
+    public async Task<ApiResponse<MenuItem?>> GetMenuItemByIdAsync(int id)
+    {
+        var response = await client.TheRestaurantApiClient().GetAsync($"menu-items/{id}");
+        return (await response.Content.ReadFromJsonAsync<ApiResponse<MenuItem>>())!;
+    }
 }

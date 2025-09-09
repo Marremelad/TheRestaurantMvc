@@ -24,21 +24,21 @@
                     @if (hasJwt)
                     {
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                            <a class="btn btn-outline-dark" asp-area="" asp-controller="MenuItems" asp-action="AdminIndex">Menu</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark" asp-area="" asp-controller="Menu" asp-action="Index">Reservations</a>
+                            <a class="btn btn-outline-dark" asp-area="" asp-controller="MenuItems" asp-action="Index">Reservations</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark" asp-area="" asp-controller="Menu" asp-action="Index">Tables</a>
+                            <a class="btn btn-outline-dark" asp-area="" asp-controller="MenuItems" asp-action="Index">Tables</a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MenuItems" asp-action="Index">Menu</a>
                         </li>
                     }
                 </ul>

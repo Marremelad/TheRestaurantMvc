@@ -1,4 +1,7 @@
 @model MenuItem
+@{
+    var hasJwt = Context.Request.Cookies.ContainsKey("jsonWebToken");
+}
 
 <div class="col-lg-4 col-md-6 mb-4">
     <div class="card h-100 shadow-sm">
@@ -11,7 +14,12 @@
             <p class="card-text text-muted flex-grow-1">@Model.Description</p>
             <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="h4 text-primary mb-0">$@Model.Price</span>
+                @if (hasJwt)
+                {
+                    <a class="btn btn-outline-success" asp-area="" asp-controller="MenuItems" asp-action="AdminIndex">Edit</a>
+                }
             </div>
+            
         </div>
     </div>
 </div> 

@@ -1,0 +1,8 @@
+﻿@model ApiResponse<List<MenuItem>>
+
+<div class="row py-5">
+    @foreach (var menuItem in Model.Value!)
+    {
+        <partial name="_MenuItemCard" model="menuItem" />
+    }
+</div>
