@@ -1,19 +1,28 @@
 using TheRestaurantMvc.ActionFilters;
-using TheRestaurantMvc.Utilities;
+using TheRestaurantMvc.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient("TheRestaurantApi", client =>
+// builder.Services.AddHttpClient("TheRestaurantApi", client =>
+// {
+//     client.BaseAddress = new Uri("https://localhost:44304/api/");
+// });
+
+// builder.Services.AddScoped<IRestaurantApiClient, RestaurantApiClient>();
+
+builder.Services.AddHttpClient(); // Registers IHttpClientFactory
+
+builder.Services.AddScoped<IRestaurantApiClient, RestaurantApiClient>(provider =>
 {
-    client.BaseAddress = new Uri("https://localhost:44304/api/");
+    var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
+    var httpClient = httpClientFactory.CreateClient();
+    httpClient.BaseAddress = new Uri("https://localhost:44304/api/");
+    return new RestaurantApiClient(httpClient);
 });
 
-builder.Services.AddScoped<RegisteredClients>();
-
-// Action filters
 builder.Services.AddScoped<JwtAuthenticActionFilter>();
 
 var app = builder.Build();

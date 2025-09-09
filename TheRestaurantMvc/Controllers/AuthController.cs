@@ -1,20 +1,20 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using TheRestaurantMvc.Clients;
 using TheRestaurantMvc.Models;
 using TheRestaurantMvc.Models.ViewModels;
-using TheRestaurantMvc.Utilities;
 
 namespace TheRestaurantMvc.Controllers;
 
-public class AuthController(RegisteredClients clients) : Controller
+public class AuthController(IRestaurantApiClient client) : Controller
 {
     public IActionResult Login() => View();
     
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
-        var response = await clients.TheRestaurantApiClient().PostAsJsonAsync("auth/login", loginViewModel);
+        var response = await client.TheRestaurantApiClient().PostAsJsonAsync("auth/login", loginViewModel);
         var authResponse = await response.Content.ReadFromJsonAsync<ApiResponse<AuthResponse>>();
         
         if (!authResponse!.IsSuccess)

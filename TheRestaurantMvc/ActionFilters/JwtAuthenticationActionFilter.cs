@@ -1,11 +1,11 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TheRestaurantMvc.Utilities;
+using TheRestaurantMvc.Clients;
 
 namespace TheRestaurantMvc.ActionFilters;
 
-public class JwtAuthenticActionFilter(RegisteredClients clients) : ActionFilterAttribute
+public class JwtAuthenticActionFilter(IRestaurantApiClient client) : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)
     {
@@ -16,8 +16,8 @@ public class JwtAuthenticActionFilter(RegisteredClients clients) : ActionFilterA
             context.Result = new RedirectToActionResult("Login", "Auth", null);
             return;
         }
-
-        clients.TheRestaurantApiClient().DefaultRequestHeaders.Authorization =
+        
+        client.TheRestaurantApiClient().DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", jwt);
     }
 }
