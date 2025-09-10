@@ -1,8 +1,18 @@
 ﻿@model ApiResponse<List<MenuItem>>
 
-<div class="row py-5">
-    @foreach (var menuItem in Model.Value!)
-    {
-        <partial name="_MenuItemCard" model="menuItem" />
-    }
+<div class="container my-5">
+    <!-- Create Menu Item Button at the top -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Menu Management</h2>
+        <a asp-controller="Admin" asp-action="CreateMenuItem" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Create Menu Item
+        </a>
+    </div>
+
+    <div class="row py-5">
+        @foreach (var menuItem in Model.Value!)
+        {
+            <partial name="_MenuItemCard" model="menuItem" />
+        }
+    </div>
 </div>
