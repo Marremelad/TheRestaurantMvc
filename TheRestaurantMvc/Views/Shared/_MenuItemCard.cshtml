@@ -16,7 +16,7 @@
                 <span class="h4 text-primary mb-0">$@Model.Price</span>
                 @if (hasJwt)
                 {
-                    <a class="btn btn-outline-success" asp-area="" asp-controller="MenuItems" asp-action="AdminIndex">Edit</a>
+                    <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                 }
             </div>
             
