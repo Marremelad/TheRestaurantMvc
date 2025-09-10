@@ -28,4 +28,11 @@ public class AdminController(
         await client.TheRestaurantApiClient().PatchAsJsonAsync($"menu-items/{id}", model);
         return RedirectToAction("Menu", "Admin");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteMenuItem(int id)
+    {
+        await client.TheRestaurantApiClient().DeleteAsync($"menu-items/{id}");
+        return RedirectToAction("Menu", "Admin");
+    }
 }
