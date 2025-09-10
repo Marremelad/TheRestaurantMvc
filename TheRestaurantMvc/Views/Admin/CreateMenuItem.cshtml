@@ -10,44 +10,48 @@
                         <p class="text-muted">Add a new item to the menu</p>
                     </div>
                     
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <div asp-validation-summary="All" class="mb-0"></div>
+                        </div>
+                    }
+                    
                     <form asp-controller="Admin" asp-action="CreateMenuItem" method="post" novalidate>
                         <div class="mb-3">
-                            <label for="Name" class="form-label">Name</label>
-                            <input id="Name" name="Name" class="form-control" 
-                                   value="@(Model?.Name ?? "")" 
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" class="form-control" 
                                    placeholder="Enter menu item name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="Price" class="form-label">Price</label>
+                            <label asp-for="Price" class="form-label">Price</label>
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
-                                <input type="number" step="0.01" min="0" class="form-control" 
-                                       name="Price" id="Price" 
-                                       value="@(Model?.Price ?? 0)" 
-                                       placeholder="0.00" />
+                                <input asp-for="Price" type="number" step="0.01" min="0" class="form-control" 
+                                       placeholder="0.00" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="Description" class="form-label">Description</label>
-                            <textarea id="Description" name="Description" class="form-control" rows="4" 
-                                      placeholder="Describe the menu item">@(Model?.Description ?? "")</textarea>
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" 
+                                      placeholder="Describe the menu item"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="Image" class="form-label">Image URL</label>
-                            <input id="Image" name="Image" class="form-control" 
-                                   value="@(Model?.Image ?? "")" 
+                            <label asp-for="Image" class="form-label">Image URL</label>
+                            <input asp-for="Image" class="form-control" 
                                    placeholder="https://example.com/image.jpg" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
 
                         <div class="mb-4">
                             <div class="form-check">
-                                <input id="IsPopular" name="IsPopular" type="checkbox" class="form-check-input" value="true"
-                                       @(Model?.IsPopular == true ? "checked" : "") />
-                                <input name="IsPopular" type="hidden" value="false" />
-                                <label class="form-check-label" for="IsPopular">
+                                <input asp-for="IsPopular" type="checkbox" class="form-check-input" />
+                                <label asp-for="IsPopular" class="form-check-label">
                                     Mark as Popular
                                 </label>
                             </div>
@@ -63,3 +67,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
