@@ -42,6 +42,6 @@ public class AuthController(IRestaurantApiClient client) : Controller
     public IActionResult Logout()
     {
         HttpContext.Response.Cookies.Delete("jsonWebToken");
-        return RedirectToAction("Login", "Auth");
+        return RedirectToAction("Index", "Home");
     }
 }

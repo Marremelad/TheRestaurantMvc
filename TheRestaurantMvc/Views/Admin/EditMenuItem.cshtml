@@ -9,7 +9,6 @@
                         <h2 class="mb-3">Edit Menu Item</h2>
                         <p class="text-muted">Update the details for this menu item</p>
                     </div>
-                    
                     @if (!Model.IsSuccess || Model.Value == null)
                     {
                         <div class="alert alert-danger" role="alert">
@@ -22,7 +21,7 @@
                             <input type="hidden" name="Id" value="@Model.Value.Id" />
                             
                             <div class="mb-3">
-                                <label for="Name" class="form-label">Name</label>
+                                <label asp-for="@Model.Value.Name" class="form-label">Name</label>
                                 <input name="Name" class="form-control" value="@Model.Value.Name" placeholder="Enter menu item name">
                             </div>
 
@@ -46,7 +45,7 @@
 
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <input name="IsPopular" type="checkbox" class="form-check-input" @(Model.Value.IsPopular)>
+                                    <input for="IsPopular" type="checkbox" class="form-check-input" @(Model.Value.IsPopular)>
                                     <label class="form-check-label" for="IsPopular">
                                         Mark as Popular
                                     </label>
