@@ -19,15 +19,12 @@
                     else
                     {
                         <form asp-action="Update" asp-route-id="@Model.Value.Id" method="post" novalidate>
-
-                            <!-- Name -->
                             <div class="mb-3">
                                 <label for="Name" class="form-label">Name</label>
                                 <input id="Name" name="Name" class="form-control"
                                        value="@Model.Value.Name" />
                             </div>
 
-                            <!-- Price -->
                             <div class="mb-3">
                                 <label for="Price" class="form-label">Price</label>
                                 <div class="input-group">
@@ -37,34 +34,30 @@
                                 </div>
                             </div>
 
-                            <!-- Description -->
                             <div class="mb-3">
                                 <label for="Description" class="form-label">Description</label>
                                 <textarea id="Description" name="Description" class="form-control" rows="4">@Model.Value.Description</textarea>
                             </div>
 
-                            <!-- Image URL -->
                             <div class="mb-3">
                                 <label for="Image" class="form-label">Image URL</label>
                                 <input id="Image" name="Image" class="form-control"
                                        value="@Model.Value.Image" />
                             </div>
 
-                            <!-- IsPopular -->
                             <div class="mb-4">
-                                <input type="hidden" name="IsPopular" value="false" />
                                 <div class="form-check">
                                     <input id="IsPopular" name="IsPopular" type="checkbox" class="form-check-input" value="true"
                                            @(Model.Value.IsPopular ? "checked" : "") />
+                                    <input name="IsPopular" type="hidden" value="false" />
                                     <label class="form-check-label" for="IsPopular">
                                         Mark as Popular
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Actions -->
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a asp-action="Menu" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                                <a asp-controller="Admin" asp-action="Menu" class="btn btn-outline-secondary me-md-2">Cancel</a>
                                 <button type="submit" class="btn btn-danger">Update Menu Item</button>
                             </div>
 

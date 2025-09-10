@@ -20,6 +20,6 @@ public class AdminController(
         await client.TheRestaurantApiClient()
             .PatchAsJsonAsync($"menu-items/{id}", model);
         
-        return RedirectToAction("EditMenuItem", "Admin", new { id });
+        return RedirectToAction("Menu", "Admin");
     }
 }
