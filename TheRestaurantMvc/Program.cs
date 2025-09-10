@@ -1,19 +1,17 @@
+using System.Globalization;
 using TheRestaurantMvc.ActionFilters;
 using TheRestaurantMvc.Clients;
 using TheRestaurantMvc.Services;
 using TheRestaurantMvc.Services.IServices;
 
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-// builder.Services.AddHttpClient("TheRestaurantApi", client =>
-// {
-//     client.BaseAddress = new Uri("https://localhost:44304/api/");
-// });
-
-// builder.Services.AddScoped<IRestaurantApiClient, RestaurantApiClient>();
 
 builder.Services.AddHttpClient(); // Registers IHttpClientFactory
 

@@ -1,53 +1,58 @@
 ﻿@{
-   ViewData["Title"] = "The Restaurant";
+    ViewData["Title"] = "The Restaurant";
 }
 
 @model ApiResponse<List<MenuItem>>
 
 <div class="container-fluid">
-   <!-- Hero Section -->
-   <div class="row bg-white text-black py-5">
-       <div class="col-12 text-center">
-           <h1 class="display-4 mb-3">Welcome to The Restaurant.</h1>
-           <p class="lead mb-4 text-muted">Experience culinary excellence in the heart of the city. Our passionate chefs create unforgettable dishes using the finest local ingredients, bringing you a perfect blend of traditional flavors and modern innovation.</p>
-           <div class="mt-4">
-               <a href="/Booking" class="btn btn-danger btn-lg">Make Reservation</a>
-           </div>
-       </div>
-   </div>
+    <!-- Hero Section -->
+    <div class="row bg-white text-black py-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 mb-3">Welcome to The Restaurant.</h1>
+            <p class="lead mb-4 text-muted">Experience culinary excellence in the heart of the city. Our passionate chefs create unforgettable dishes using the finest local ingredients, bringing you a perfect blend of traditional flavors and modern innovation.</p>
+            <div class="mt-4">
+                <a asp-controller="Auth" asp-action="Login" class="btn btn-danger btn-lg">Make Reservation</a>
+            </div>
+        </div>
+    </div>
 
-   <div class="row py-5">
-       <div class="col-12 text-center mb-5">
-           <h2 class="display-5">Our Most Popular Dishes.</h2>
-           <p class="text-muted">Discover the favorites that keep our guests coming back.</p>
-       </div>
+    <div class="row py-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="display-5">Our Most Popular Dishes.</h2>
+            <p class="text-muted">Discover the favorites that keep our guests coming back.</p>
+        </div>
+        
+        @if (Model.Value == null)
+        {
+            <h2>IS NULL</h2>
+        }
+        
+        @if (!Model.IsSuccess)
+        {
+            <div class="col-12">
+                <p>An error occurred</p>
+            </div>
+        }
+        else if (Model.Value!.Count == 0)
+        {
+            <div class="col-12 text-center">
+                <p>No menu items available</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var menuItem in Model.Value!)
+            {
+                <partial name="_MenuItemCard" model="menuItem" />
+            }
+        }
+    </div>
 
-       @if (!Model.IsSuccess)
-       {
-           <div class="col-12">
-               <p>An error occurred</p>
-           </div>
-       }
-       else if (Model.Value!.Count == 0)
-       {
-           <div class="col-12 text-center">
-               <p>No menu items available</p>
-           </div>
-       }
-       else
-       {
-           @foreach (var menuItem in Model.Value!.Where(menuItem => menuItem.IsPopular).Take(3))
-           {
-               <partial name="_MenuItemCard" model="menuItem" />
-           }
-       }
-   </div>
-
-   <div class="row bg-white py-5" id="menu">
-       <div class="col-12 text-center">
-           <h3 class="mb-3">Want to See More?</h3>
-           <p class="mb-4">Browse our complete menu with all available dishes and beverages</p>
-           <a asp-controller="MenuItems" asp-action="Index" class="btn btn-danger btn-lg">Full Menu</a>
-       </div>
-   </div>
+    <div class="row bg-white py-5" id="menu">
+        <div class="col-12 text-center">
+            <h3 class="mb-3">Want to See More?</h3>
+            <p class="mb-4">Browse our complete menu with all available dishes and beverages</p>
+            <a asp-controller="MenuItems" asp-action="Index" class="btn btn-danger btn-lg">Full Menu</a>
+        </div>
+    </div>
 </div>

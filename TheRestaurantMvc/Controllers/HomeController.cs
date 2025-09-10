@@ -7,5 +7,9 @@ namespace TheRestaurantMvc.Controllers;
 // [ServiceFilter<JwtAuthenticActionFilter>]
 public class HomeController(IMenuItemService service) : Controller
 {
-    public async Task<IActionResult> Index() => View(await service.GetMenuItemsAsync());
+    public async Task<IActionResult> Index()
+    {
+        var response = await service.GetMenuItemsAsync();
+        return View(response);
+    }
 }
