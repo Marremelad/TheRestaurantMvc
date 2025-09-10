@@ -21,31 +21,31 @@
                             <input type="hidden" name="Id" value="@Model.Value.Id" />
                             
                             <div class="mb-3">
-                                <label asp-for="@Model.Value.Name" class="form-label">Name</label>
-                                <input name="Name" class="form-control" value="@Model.Value.Name" placeholder="Enter menu item name">
+                                <label for="Name" class="form-label">Name</label>
+                                <input id="Name" name="Name" class="form-control" value="@Model.Value.Name" placeholder="Enter menu item name">
                             </div>
 
                             <div class="mb-3">
                                 <label for="Price" class="form-label">Price</label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
-                                    <input name="Price" type="number" step="0.01" min="0" class="form-control" value="@Model.Value.Price" placeholder="0.00">
+                                    <input id="Price" name="Price" type="number" step="0.01" min="0" class="form-control" value="@Model.Value.Price" placeholder="0.00">
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="Description" class="form-label">Description</label>
-                                <textarea name="Description" class="form-control" rows="4" placeholder="Enter menu item description">@Model.Value.Description</textarea>
+                                <textarea id="Description" name="Description" class="form-control" rows="4" placeholder="Enter menu item description">@Model.Value.Description</textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="Image" class="form-label">Image URL</label>
-                                <input name="Image" class="form-control" value="@Model.Value.Image" placeholder="Enter image URL">
+                                <input id="Image" name="Image" class="form-control" value="@Model.Value.Image" placeholder="Enter image URL">
                             </div>
 
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <input for="IsPopular" type="checkbox" class="form-check-input" @(Model.Value.IsPopular)>
+                                    <input id="IsPopular" name="IsPopular" type="checkbox" class="form-check-input" @(Model.Value.IsPopular ? "checked" : "")>
                                     <label class="form-check-label" for="IsPopular">
                                         Mark as Popular
                                     </label>

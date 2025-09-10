@@ -8,13 +8,4 @@ namespace TheRestaurantMvc.Controllers;
 public class MenuItemsController(IMenuItemService service) : Controller
 {
     public async Task<IActionResult> Index() => View(await service.GetMenuItemsAsync());
-    
-    public async Task<IActionResult> AdminIndex() => View(await service.GetMenuItemsAsync());
-
-    // public async Task<IActionResult> Edit(int id) => View(await service.GetMenuItemByIdAsync(id));
-
-    public IActionResult Update()
-    {
-        throw new NotImplementedException();
-    }
 }
