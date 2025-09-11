@@ -60,7 +60,11 @@
                             </form>
                         </div>
                         <div class="col-4">
-                            <button type="button" class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="DeleteTable" asp-route-id="@table.Number">Delete</button>
+                            <form asp-controller="Admin" asp-action="DeleteTable" asp-route-id="@table.Number" 
+                                  method="post" style="display: inline;"
+                                  onsubmit="return confirm('Are you sure you want to delete table @table.Number?');">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
                         </div>
                     </div>
                 }
