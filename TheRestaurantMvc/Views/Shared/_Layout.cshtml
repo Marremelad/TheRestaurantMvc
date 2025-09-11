@@ -14,11 +14,22 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Restaurant</a>
+            <div class="d-sm-none d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Restaurant</a>
+                @if (hasJwt)
+                {
+                    <a class="btn btn-outline-primary btn-sm" asp-controller="Auth" asp-action="Logout">Log Out</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-primary btn-sm" asp-controller="Auth" asp-action="Login">Log In</a>
+                }
+            </div>
             
-            <!-- Mobile layout - buttons visible directly, no hamburger -->
+            <a class="navbar-brand d-none d-sm-block" asp-area="" asp-controller="Home" asp-action="Index">The Restaurant</a>
+            
             <div class="d-sm-none w-100 mt-2">
-                <div class="d-flex flex-wrap gap-2 justify-content-center mb-2">
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
                     @if (hasJwt)
                     {
                         <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="Admin" asp-action="Menu">Menu</a>
@@ -30,19 +41,8 @@
                         <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="MenuItems" asp-action="Index">Menu</a>
                     }
                 </div>
-                <div class="d-flex justify-content-center">
-                    @if (hasJwt)
-                    {
-                        <a class="btn btn-outline-primary btn-sm" asp-controller="Auth" asp-action="Logout">Log Out</a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-outline-primary btn-sm" asp-controller="Auth" asp-action="Login">Log In</a>
-                    }
-                </div>
             </div>
     
-            <!-- Desktop layout - original structure preserved -->
             <div class="navbar-collapse collapse d-none d-sm-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 gap-3">
                     @if (hasJwt)
@@ -97,4 +97,3 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>

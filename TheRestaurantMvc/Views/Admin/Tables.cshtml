@@ -22,14 +22,12 @@
     {
         <div class="row">
             <div class="col-lg-6 mx-auto">
-                <!-- Create Table Button above list -->
                 <div class="mb-3 text-end">
                     <a asp-controller="Admin" asp-action="CreateTable" class="btn btn-success">
                         <i class="bi bi-plus-circle"></i> Create Table
                     </a>
                 </div>
 
-                <!-- Header row -->
                 <div class="row mb-3 pb-2 border-bottom text-center">
                     <div class="col-4">
                         <h6 class="mb-0 text-muted">Table Number</h6>
@@ -37,7 +35,7 @@
                     <div class="col-4">
                         <h6 class="mb-0 text-muted">Capacity</h6>
                     </div>
-                    <div class="col-4"></div> <!-- Spacer for buttons -->
+                    <div class="col-4"></div>
                 </div>
                 
                 @foreach (var table in Model.Value!)
