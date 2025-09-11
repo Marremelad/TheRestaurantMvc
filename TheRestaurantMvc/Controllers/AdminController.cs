@@ -45,6 +45,14 @@ public class AdminController(
         return View(reservationsResponse);
     }
     
+    public async Task<IActionResult> ReservationsByEmail(string email)
+    {
+        var response = await client.TheRestaurantApiClient().GetAsync($"reservations/{email}");
+        var reservationsResponse = await response.Content.ReadFromJsonAsync<ApiResponse<List<Reservation>>>();
+
+        return View(reservationsResponse);
+    }
+    
     [HttpPost]
     public async Task<IActionResult> DeleteReservation(int id)
     {
@@ -59,7 +67,7 @@ public class AdminController(
 
         return View(tablesResponse);
     }
-
+    
     public IActionResult CreateTable() => View() ; 
     [HttpPost]
     public async Task<IActionResult> CreateTable(TableCreateViewModel viewModel)

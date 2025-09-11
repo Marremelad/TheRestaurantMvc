@@ -1,0 +1,9 @@
+﻿@model ApiResponse<List<Reservation>>
+
+<partial name="_ReservationsTable" model="Model" />
+
+<div class="d-flex justify-content-end mt-3">
+    <a asp-controller="Admin" asp-action="Reservations" class="btn btn-outline-secondary">
+        Show All Reservations
+    </a>
+</div>
