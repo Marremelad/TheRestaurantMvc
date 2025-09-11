@@ -1,0 +1,57 @@
+﻿@model ApiResponse<List<Table>>
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">Restaurant Tables</h1>
+        <p class="lead text-muted">Overview of all available seating</p>
+    </div>
+    
+    @if (!Model.IsSuccess)
+    {
+        <div class="col-12 text-center">
+            <p>An error occurred. Could not fetch data.</p>
+        </div>
+    }
+    else if (Model.Value!.Count == 0)
+    {
+        <div class="col-12 text-center">
+            <p>No tables available</p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="d-flex mb-3 pb-2 border-bottom">
+                    <div class="flex-fill text-center">
+                        <h6 class="mb-0 text-muted">Table Number</h6>
+                    </div>
+                    <div class="flex-fill text-center">
+                        <h6 class="mb-0 text-muted">Capacity</h6>
+                    </div>
+                    <div style="width: 120px;"></div> <!-- Spacer for buttons -->
+                </div>
+                
+                @foreach (var table in Model.Value!)
+                {
+                    <div class="table-item d-flex align-items-center mb-3 pb-2 border-bottom">
+                        <div class="flex-fill text-center">
+                            <span class="fw-bold">@table.Number</span>
+                        </div>
+                        <div class="flex-fill text-center">
+                            <span class="text-primary">@table.Capacity</span>
+                        </div>
+                        <div class="d-flex gap-2" style="width: 120px;">
+                            <form asp-controller="Admin" asp-action="DeleteTable" asp-route-id="@table.Number" 
+                                  method="post" style="display: inline;"
+                                  onsubmit="return confirm('Are you sure you want to delete Table @table.Number?');">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                            <a class="btn btn-outline-success btn-sm" asp-controller="Admin" asp-action="UpdateTable" asp-route-id="@table.Number">Edit</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheRestaurantMvc.ActionFilters;
 using TheRestaurantMvc.Clients;
+using TheRestaurantMvc.Models;
 using TheRestaurantMvc.Models.ViewModels;
 using TheRestaurantMvc.Services.IServices;
 
@@ -34,5 +35,13 @@ public class AdminController(
     {
         await client.TheRestaurantApiClient().DeleteAsync($"menu-items/{id}");
         return RedirectToAction("Menu", "Admin");
+    }
+
+    public async Task<IActionResult> Tables()
+    {
+        var response = await client.TheRestaurantApiClient().GetAsync("tables");
+        var tablesResponse = await response.Content.ReadFromJsonAsync<ApiResponse<List<Table>>>();
+
+        return View(tablesResponse);
     }
 }
