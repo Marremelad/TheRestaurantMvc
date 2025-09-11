@@ -37,6 +37,21 @@ public class AdminController(
         return RedirectToAction("Menu", "Admin");
     }
     
+    public async Task<IActionResult> Reservations()
+    {
+        var response = await client.TheRestaurantApiClient().GetAsync("reservations");
+        var reservationsResponse = await response.Content.ReadFromJsonAsync<ApiResponse<List<Reservation>>>();
+
+        return View(reservationsResponse);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> DeleteReservation(int id)
+    {
+        await client.TheRestaurantApiClient().DeleteAsync($"reservations/{id}");
+        return RedirectToAction("Reservations", "Admin");
+    }
+    
     public async Task<IActionResult> Tables()
     {
         var response = await client.TheRestaurantApiClient().GetAsync("tables");
