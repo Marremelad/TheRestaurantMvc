@@ -22,32 +22,45 @@
     {
         <div class="row">
             <div class="col-lg-6 mx-auto">
-                <div class="d-flex mb-3 pb-2 border-bottom">
-                    <div class="flex-fill text-center">
+                <!-- Create Table Button above list -->
+                <div class="mb-3 text-end">
+                    <a asp-controller="Admin" asp-action="CreateTable" class="btn btn-success">
+                        <i class="bi bi-plus-circle"></i> Create Table
+                    </a>
+                </div>
+
+                <!-- Header row -->
+                <div class="row mb-3 pb-2 border-bottom text-center">
+                    <div class="col-4">
                         <h6 class="mb-0 text-muted">Table Number</h6>
                     </div>
-                    <div class="flex-fill text-center">
+                    <div class="col-4">
                         <h6 class="mb-0 text-muted">Capacity</h6>
                     </div>
-                    <div style="width: 120px;"></div> <!-- Spacer for buttons -->
+                    <div class="col-4"></div> <!-- Spacer for buttons -->
                 </div>
                 
                 @foreach (var table in Model.Value!)
                 {
-                    <div class="table-item d-flex align-items-center mb-3 pb-2 border-bottom">
-                        <div class="flex-fill text-center">
+                    <div class="row mb-3 pb-2 border-bottom text-center align-items-center">
+                        <div class="col-4">
                             <span class="fw-bold">@table.Number</span>
                         </div>
-                        <div class="flex-fill text-center">
-                            <span class="text-primary">@table.Capacity</span>
-                        </div>
-                        <div class="d-flex gap-2" style="width: 120px;">
-                            <form asp-controller="Admin" asp-action="DeleteTable" asp-route-id="@table.Number" 
-                                  method="post" style="display: inline;"
-                                  onsubmit="return confirm('Are you sure you want to delete Table @table.Number?');">
-                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                        <div class="col-4">
+                            <form asp-controller="Admin" asp-action="UpdateTableCapacity" asp-route-id="@table.Number" 
+                                  method="post" style="display: inline;">
+                                <input type="number" 
+                                       name="capacity" 
+                                       value="@table.Capacity" 
+                                       min="1" 
+                                       max="20"
+                                       class="form-control form-control-sm text-center d-inline-block" 
+                                       style="width: 80px;"
+                                       onchange="this.form.submit()">
                             </form>
-                            <a class="btn btn-outline-success btn-sm" asp-controller="Admin" asp-action="UpdateTable" asp-route-id="@table.Number">Edit</a>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="DeleteTable" asp-route-id="@table.Number">Delete</button>
                         </div>
                     </div>
                 }

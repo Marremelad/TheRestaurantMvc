@@ -44,4 +44,11 @@ public class AdminController(
 
         return View(tablesResponse);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteTable(int tableNumber)
+    {
+        await client.TheRestaurantApiClient().DeleteAsync($"tables/{tableNumber}");
+        return RedirectToAction("Tables", "Admin");
+    }
 }
