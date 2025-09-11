@@ -36,7 +36,7 @@
         }
         else
         {
-            @foreach (var menuItem in Model.Value!)
+            @foreach (var menuItem in Model.Value!.Where(m => m.IsPopular).Take(3))
             {
                 <partial name="_MenuItemCard" model="menuItem" />
             }

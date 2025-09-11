@@ -8,14 +8,40 @@
     
     @if (!Model.IsSuccess)
     {
+        <div class="d-flex justify-content-end mb-3">
+            <div class="col-md-4 col-lg-3">
+                <form asp-controller="Admin" asp-action="ReservationsByEmail" method="get">
+                    <div class="input-group">
+                        <input type="text" name="email" class="form-control" placeholder="Search by email..." value="@ViewBag.SearchEmail">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <div class="col-12 text-center">
             <div class="alert alert-danger" role="alert">
-                <p class="mb-0">No reservations found.</p>
+                <p class="mb-0">No reservations found</p>
             </div>
         </div>
     }
     else if (Model.Value!.Count == 0)
     {
+        <div class="d-flex justify-content-end mb-3">
+            <div class="col-md-4 col-lg-3">
+                <form asp-controller="Admin" asp-action="ReservationsByEmail" method="get">
+                    <div class="input-group">
+                        <input type="text" name="email" class="form-control" placeholder="Search by email..." value="@ViewBag.SearchEmail">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <div class="col-12 text-center">
             <div class="alert alert-info" role="alert">
                 <p class="mb-0">No reservations found</p>
@@ -26,7 +52,6 @@
     {
         <div class="row">
             <div class="col-12">
-                <!-- Search Box -->
                 <div class="d-flex justify-content-end mb-3">
                     <div class="col-md-4 col-lg-3">
                         <form asp-controller="Admin" asp-action="ReservationsByEmail" method="get">

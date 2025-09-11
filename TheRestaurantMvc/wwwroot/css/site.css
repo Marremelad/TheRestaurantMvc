@@ -48,8 +48,13 @@ h1, h2, h3, h4, h5, .navbar-brand, .btn {
   padding-left: 0;
 }
 
-.no-spinner::-webkit-outer-spin-button,
-.no-spinner::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Fixed height */
+  line-height: 60px; /* Centers text vertically */
+  white-space: nowrap;
+  background-color: #f8f9fa; /* Optional: add background color */
+  border-top: 1px solid #e5e5e5;
 }

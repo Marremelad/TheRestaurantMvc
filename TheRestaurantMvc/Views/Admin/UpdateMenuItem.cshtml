@@ -49,8 +49,9 @@
 
                         <div class="mb-4">
                             <div class="form-check">
-                                <input asp-for="@Model.Value!.IsPopular" type="checkbox" class="form-check-input" />
-                                <label asp-for="@Model.Value!.IsPopular" class="form-check-label">
+                                <input type="checkbox" name="IsPopular" class="form-check-input" value="true" @(Model.Value!.IsPopular ? "checked" : "") />
+                                <input type="hidden" name="IsPopular" value="false" />
+                                <label for="@Model.Value.IsPopular" class="form-check-label">
                                     Mark as Popular
                                 </label>
                             </div>
