@@ -45,6 +45,14 @@ public class AdminController(
         return View(tablesResponse);
     }
 
+    public IActionResult CreateTable() => View() ; 
+    [HttpPost]
+    public async Task<IActionResult> CreateTable(TableCreateViewModel viewModel)
+    {
+        await client.TheRestaurantApiClient().PostAsJsonAsync("tables", viewModel);
+        return RedirectToAction("Tables", "Admin");
+    }
+
     public async Task<IActionResult> UpdateTable(int id, TableUpdateViewModel viewModel)
     {
         await client.TheRestaurantApiClient().PatchAsJsonAsync($"tables/{id}", viewModel);
