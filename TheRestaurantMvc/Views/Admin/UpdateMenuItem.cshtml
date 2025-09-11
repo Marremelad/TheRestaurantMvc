@@ -19,9 +19,8 @@
 
                     <form asp-controller="Admin" asp-action="UpdateMenuItem" asp-route-id="@Model.Value!.Id" method="post" novalidate>
                         <div class="mb-3">
-                            <label asp-for="@Model.Value!.Name" class="form-label">Name</label>
-                            <input asp-for="@Model.Value!.Name" class="form-control" placeholder="Enter menu item name" />
-                            <span asp-validation-for="@Model.Value!.Name" class="text-danger"></span>
+                            <label for="Name" class="form-label">Name</label>
+                            <input name="Name" id="Name" class="form-control" placeholder="Enter menu item name" value="@Model.Value!.Name" />
                         </div>
 
                         <div class="mb-3">
@@ -34,23 +33,21 @@
                                        required />
                             </div>
                         </div>
-                        
+    
                         <div class="mb-3">
-                            <label asp-for="@Model.Value!.Description" class="form-label">Description</label>
-                            <textarea asp-for="@Model.Value!.Description" class="form-control" rows="4" placeholder="Describe the menu item"></textarea>
-                            <span asp-validation-for="@Model.Value!.Description" class="text-danger"></span>
+                            <label for="Description" class="form-label">Description</label>
+                            <textarea name="Description" id="Description" class="form-control" rows="4" placeholder="Describe the menu item">@Model.Value!.Description</textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="@Model.Value!.Image" class="form-label">Image URL</label>
-                            <input asp-for="@Model.Value!.Image" class="form-control" placeholder="https://example.com/image.jpg" />
-                            <span asp-validation-for="@Model.Value!.Image" class="text-danger"></span>
+                            <label for="Image" class="form-label">Image URL</label>
+                            <input name="Image" id="Image" class="form-control" placeholder="https://example.com/image.jpg" value="@Model.Value!.Image" />
                         </div>
 
                         <div class="mb-4">
                             <div class="form-check">
-                                <input type="checkbox" name="IsPopular" class="form-check-input" value="true" @(Model.Value!.IsPopular ? "checked" : "") />
-                                <input type="hidden" name="IsPopular" value="false" />
+                                <input name="IsPopular" type="checkbox" class="form-check-input" value="true" @(Model.Value!.IsPopular ? "checked" : "") />
+                                <input name="IsPopular" type="hidden" value="false" />
                                 <label for="@Model.Value.IsPopular" class="form-check-label">
                                     Mark as Popular
                                 </label>

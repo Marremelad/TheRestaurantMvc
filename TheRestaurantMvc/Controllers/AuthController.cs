@@ -36,7 +36,7 @@ public class AuthController(IRestaurantApiClient client) : Controller
             Expires = jwtObject.ValidTo
         });
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Reservations", "Admin");
     }
 
     public IActionResult Logout()

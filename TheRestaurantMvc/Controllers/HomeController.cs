@@ -10,7 +10,7 @@ public class HomeController(IMenuItemService service) : Controller
     {
         if (HttpContext.Request.Cookies.ContainsKey("jsonWebToken"))
         {
-            return RedirectToAction("Menu", "Admin");
+            return RedirectToAction("Reservations", "Admin");
         }
         
         var response = await service.GetMenuItemsAsync();
