@@ -36,7 +36,7 @@ public class AdminController(
         await client.TheRestaurantApiClient().DeleteAsync($"menu-items/{id}");
         return RedirectToAction("Menu", "Admin");
     }
-
+    
     public async Task<IActionResult> Tables()
     {
         var response = await client.TheRestaurantApiClient().GetAsync("tables");
@@ -45,6 +45,12 @@ public class AdminController(
         return View(tablesResponse);
     }
 
+    public async Task<IActionResult> UpdateTable(int id, TableUpdateViewModel viewModel)
+    {
+        await client.TheRestaurantApiClient().PatchAsJsonAsync($"tables/{id}", viewModel);
+        return RedirectToAction("Tables", "Admin");
+    }
+    
     [HttpPost]
     public async Task<IActionResult> DeleteTable(int id)
     {

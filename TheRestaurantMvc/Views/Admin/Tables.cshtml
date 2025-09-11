@@ -47,10 +47,10 @@
                             <span class="fw-bold">@table.Number</span>
                         </div>
                         <div class="col-4">
-                            <form asp-controller="Admin" asp-action="UpdateTableCapacity" asp-route-id="@table.Number" 
+                            <form asp-controller="Admin" asp-action="UpdateTable" asp-route-id="@table.Number" 
                                   method="post" style="display: inline;">
                                 <input type="number" 
-                                       name="capacity" 
+                                       name="Capacity" 
                                        value="@table.Capacity" 
                                        min="1" 
                                        max="20"
