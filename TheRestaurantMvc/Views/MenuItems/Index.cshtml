@@ -1,4 +1,8 @@
 ﻿@model ApiResponse<List<MenuItem>>
+@{
+    ViewData["Title"] = "Menu - The Restaurant | Fine Dining & Gourmet Dishes";
+    ViewData["Description"] = "Discover The Restaurant's menu featuring seasonal dishes crafted by our expert chefs. Fresh local ingredients, creative cooking, and unforgettable flavors.";
+}
 
 <div class="container my-5">
     <div class="text-center mb-5">
@@ -9,13 +13,19 @@
     @if (!Model.IsSuccess)
     {
         <div class="col-12 text-center">
-            <p>An error occurred. Could not fetch data.</p>
+            <div class="alert alert-danger" role="alert">
+                <h2>Error loading menu</h2>
+                <p class="mb-0">We couldn't load our menu right now. Please try again later or contact us directly.</p>
+            </div>
         </div>
     }
     else if (Model.Value!.Count == 0)
     {
         <div class="col-12 text-center">
-            <p>No menu items available</p>
+            <div class="alert alert-info" role="alert">
+                <h2>Menu updating</h2>
+                <p class="mb-0">Our menu is currently being updated. Contact us for current dishes and prices.</p>
+            </div>
         </div>
     }
     else
@@ -24,10 +34,10 @@
             <div class="col-lg-8 mx-auto">
                 @foreach (var menuItem in Model.Value!)
                 {
-                    <div class="menu-item d-flex justify-content-between align-items-start mb-4 pb-3 border-bottom">
+                    <article class="menu-item d-flex justify-content-between align-items-start mb-4 pb-3 border-bottom">
                         <div class="menu-content flex-grow-1 me-3">
                             <div class="d-flex align-items-center mb-2">
-                                <h5 class="menu-title mb-0">@menuItem.Name</h5>
+                                <h2 class="menu-title mb-0 h5">@menuItem.Name</h2>
                                 @if (menuItem.IsPopular)
                                 {
                                     <span class="badge bg-danger ms-2">Popular</span>
@@ -38,8 +48,16 @@
                         <div class="menu-price">
                             <span class="h5 text-primary mb-0">$@menuItem.Price</span>
                         </div>
-                    </div>
+                    </article>
                 }
+                
+                <div class="text-center mt-5 p-4 rounded">
+                    <h3 class="h4 mb-3">Ready to experience our dishes?</h3>
+                    <p class="text-muted mb-4">Book your table today and let us create an unforgettable dining experience for you.</p>
+                    <a asp-controller="Auth" asp-action="Login" class="btn btn-danger btn-lg">
+                        Make reservation
+                    </a>
+                </div>
             </div>
         </div>
     }

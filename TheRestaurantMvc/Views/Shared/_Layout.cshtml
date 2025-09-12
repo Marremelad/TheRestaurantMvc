@@ -1,12 +1,28 @@
 ﻿@{
     var hasJwt = Context.Request.Cookies.ContainsKey("jsonWebToken");
+    var baseUrl = $"{Context.Request.Scheme}://{Context.Request.Host}";
+    
+    const string defaultTitle = "The Restaurant - Fine Dining Experience";
+    const string defaultDescription = "Experience culinary excellence at The Restaurant. Fresh ingredients, innovative dishes, and exceptional service in the heart of the city.";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - The Restaurant</title>
+    
+    <title>@(ViewData["Title"] ?? defaultTitle)</title>
+    <meta name="description" content="@(ViewData["Description"] ?? defaultDescription)"/>
+    <meta name="keywords" content="restaurant, fine dining, food, cuisine, reservation, menu"/>
+    
+    <meta property="og:title" content="@(ViewData["Title"] ?? defaultTitle)"/>
+    <meta property="og:description" content="@(ViewData["Description"] ?? defaultDescription)"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="@(baseUrl + Context.Request.Path)"/>
+    <meta property="og:site_name" content="The Restaurant"/>
+    
+    <link rel="canonical" href="@(baseUrl + Context.Request.Path)"/>
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
@@ -89,7 +105,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2025 - TheRestaurantMvc
+        &copy; 2025 - The Restaurant - Fine dining experience in the city
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -97,3 +113,4 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
+</html>
