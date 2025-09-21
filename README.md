@@ -1,1 +1,2 @@
 # TheRestaurantMvc
+client for [TheRestaurantApi](https://github.com/Marremelad/TheRestaurantApi) made with [ASP.NET Core MVC](https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-9.0).
